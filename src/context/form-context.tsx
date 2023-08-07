@@ -1,11 +1,37 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-const FormContext = createContext<{ formValues: any; setFormValues: React.Dispatch<React.SetStateAction<any>> }>(null!);
+interface FormValues {
+  firstName: string;
+  lastName: string;
+  email: string;
+  cardNumber: string;
+  cardDate: string;
+  pin: string;
+  agreeToPrivacy: boolean;
+}
+
+interface FormContextType {
+  formValues: FormValues;
+  setFormValues: React.Dispatch<React.SetStateAction<FormValues>>;
+}
+
+const FormContext = createContext<FormContextType>({
+  formValues: {
+    firstName: '',
+    lastName: '',
+    email: '',
+    cardNumber: '',
+    cardDate: '',
+    pin: '',
+    agreeToPrivacy: false,
+  },
+  setFormValues: () => {},
+});
 
 export const useFormContext = () => useContext(FormContext);
 
-export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [formValues, setFormValues] = useState({
+export const FormProvider = ({ children }: { children: ReactNode }) => {
+  const [formValues, setFormValues] = useState<FormValues>({
     firstName: '',
     lastName: '',
     email: '',

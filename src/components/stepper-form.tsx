@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import React from 'react';
 import { Stepper, Button, Group, Input, PinInput, Checkbox } from '@mantine/core';
 import { FormProvider, useFormContext } from '../context/form-context';
 
 export default function FormStepper() {
-  const [active, setActive] = useState(1);
-  const nextStep = () => setActive((current) => (current < 4 ? current + 1 : current));
+  const [active, setActive] = React.useState(1);
+  const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
   const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
   const { formValues, setFormValues } = useFormContext();
 
