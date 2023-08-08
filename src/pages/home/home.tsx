@@ -1,16 +1,15 @@
 import { FunctionComponent } from "react";
-import { FromStepper } from "../../components";
+import { FormStepper } from "../../components";
+import { FormProvider } from "../../context/form-context";
 
-interface HomeProps {
-
-}
+interface HomeProps { }
 
 const Home: FunctionComponent<HomeProps> = () => {
   return (
-    <>
-      <FromStepper></FromStepper>
-    </>
+    <FormProvider>
+      <FormStepper />
+    </FormProvider>
   );
-}
+};
 
 export default Home;

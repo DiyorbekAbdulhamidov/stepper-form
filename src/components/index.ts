@@ -1,1 +1,1 @@
-export { default as FromStepper } from "./stepper-form";
+export { default as FormStepper } from "./stepper-form";

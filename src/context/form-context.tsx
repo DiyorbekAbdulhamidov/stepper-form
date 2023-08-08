@@ -10,27 +10,26 @@ interface FormValues {
   agreeToPrivacy: boolean;
 }
 
-interface FormContextType {
+interface FormContextValue {
   formValues: FormValues;
   setFormValues: React.Dispatch<React.SetStateAction<FormValues>>;
 }
 
-const FormContext = createContext<FormContextType>({
-  formValues: {
-    firstName: '',
-    lastName: '',
-    email: '',
-    cardNumber: '',
-    cardDate: '',
-    pin: '',
-    agreeToPrivacy: false,
-  },
-  setFormValues: () => {},
-});
+const FormContext = createContext<FormContextValue | undefined>(undefined);
 
-export const useFormContext = () => useContext(FormContext);
+export function useFormContext() {
+  const context = useContext(FormContext);
+  if (!context) {
+    throw new Error('Not form context');
+  }
+  return context;
+}
 
-export const FormProvider = ({ children }: { children: ReactNode }) => {
+interface FormProviderProps {
+  children: ReactNode;
+}
+
+export const FormProvider: React.FC<FormProviderProps> = ({ children }) => {
   const [formValues, setFormValues] = useState<FormValues>({
     firstName: '',
     lastName: '',
