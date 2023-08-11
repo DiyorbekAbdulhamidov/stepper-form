@@ -8,7 +8,6 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    {/* <Home></Home> */}
-    {/* <Counter />cd */}
+    <Home></Home>
   </React.StrictMode>
 );
