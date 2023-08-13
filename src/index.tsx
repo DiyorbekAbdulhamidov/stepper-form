@@ -11,4 +11,3 @@ root.render(
     <Home></Home>
   </React.StrictMode>
 );
-
